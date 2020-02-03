@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Pedidos_Pais" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13c66aa0-0327-4e6a-9411-e94f5501d085">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sample DB"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+count(ORDERS."ORDERID") AS NPedidos,
+ ORDERS."SHIPCOUNTRY" AS Pais
+FROM
+ "PUBLIC"."ORDERS" ORDERS
+GROUP BY ORDERS."SHIPCOUNTRY"]]>
+	</queryString>
+	<field name="NPEDIDOS" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="NPEDIDOS"/>
+	</field>
+	<field name="PAIS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PAIS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ORDERS"/>
+	</field>
+	<variable name="NPEDIDOS1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{NPEDIDOS}]]></variableExpression>
+	</variable>
+	<variable name="NPEDIDOS2" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{NPEDIDOS}]]></variableExpression>
+	</variable>
+	<variable name="NPEDIDOS3" class="java.lang.Long" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{NPEDIDOS}]]></variableExpression>
+	</variable>
+	<variable name="NPEDIDOS4" class="java.lang.Long" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{NPEDIDOS}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="171" y="30" width="212" height="30" uuid="5cdb5f4e-85d7-44a3-8188-edec04ab1313"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pedidos por pais]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="100" height="30" uuid="58dfa817-1e6c-4ee1-929c-174430ad9517"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IDB Mobile]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="460" y="0" width="100" height="30" uuid="be1d048d-13fd-4ba2-ad3a-b08514868237"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="383" y="0" width="100" height="30" uuid="74cc20ef-f626-4235-9c68-643e798bec74">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="385e136f-75b7-4bd8-ba32-949fda6dea2f"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Numero de Pedidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="0" width="100" height="30" uuid="36e3e874-6355-405f-b562-bfadd0f3ead9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a5e7e99d-47b4-4f74-9365-b7e5e5a84ec0"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Pais]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="380" y="10" width="100" height="30" uuid="bda6798e-58bb-4974-bf85-542f63ba13cb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="385e136f-75b7-4bd8-ba32-949fda6dea2f"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{NPEDIDOS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="100" height="30" uuid="57b1afdc-23d1-4839-b9fc-1c2a70c62329">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a5e7e99d-47b4-4f74-9365-b7e5e5a84ec0"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{PAIS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="180" y="15" width="100" height="30" uuid="28eb4c55-aa16-431b-964f-10f7424e4599"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="280" y="15" width="100" height="30" uuid="55baf75c-09fb-4718-925f-0850bb983576"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="80" y="10" width="400" height="1" uuid="35f3037e-ec5c-46c1-a043-92eafb70ac7e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</rectangle>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="46" splitType="Stretch">
+			<textField>
+				<reportElement x="380" y="0" width="100" height="30" uuid="0a40f9ff-7730-4158-be08-2778eb4eb3f0"/>
+				<textFieldExpression><![CDATA[$V{NPEDIDOS1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="0" width="100" height="30" uuid="db44eaf0-bcfd-4104-bd01-cf2db92f857b"/>
+				<text><![CDATA[Total Pedidos]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
